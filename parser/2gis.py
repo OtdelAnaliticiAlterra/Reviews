@@ -97,9 +97,3 @@ class TwoGisParser(AbstractRequestsParser, ParseSessionInterface):
             next_link = response.json().get('next_link')
 
         return self._serialize(reviews)
-
-
-p_obj = TwoGisParser()
-
-data = p_obj.run()
-print(data)
