@@ -1,0 +1,4 @@
+*.html
+*.PNG
+.venv
+.idea
