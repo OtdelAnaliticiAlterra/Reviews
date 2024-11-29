@@ -1,6 +1,7 @@
 from enum import Enum
 
 from requests import Response
+from requests.utils import rewind_body
 
 from parser.base.parsers import ParseSessionInterface, AbstractRequestsParser
 from parser.base.serializers import SerializerInterface
@@ -64,8 +65,6 @@ class TwoGisSerializer(SerializerInterface):
 
 
 class TwoGisParser(AbstractRequestsParser, ParseSessionInterface):
-    BASE_URL: str = 'https://public-api.reviews.2gis.com/2.0/branches/563478234508453/reviews'
-
     HEADERS: dict = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
     }
@@ -85,15 +84,29 @@ class TwoGisParser(AbstractRequestsParser, ParseSessionInterface):
     def _serialize(self, data: dict | list) -> Review | list[Review]:
         return self._serializer.serialize(data)
 
-    def run(self) -> list[Review]:
+    def pars(self, url: str) -> list[Review]:
         reviews: list = list()
-
-        next_link = self.BASE_URL
-
+        next_link = url
         while next_link is not None:
             response: Response = self._session.get(next_link, params=self._params)
-
             reviews.extend(response.json().get('reviews'))
             next_link = response.json().get('next_link')
 
         return self._serialize(reviews)
+
+    def pars_list(self, urls: list[str]) -> list[Review]:
+        reviews: list = list()
+        for url in urls:
+            reviews.extend(self.pars(url))
+        return reviews
+
+    def run(self, url: str | list[str]) -> list[Review]:
+        if isinstance(url, str):
+            return self.pars(url)
+        elif isinstance(url, list):
+            return self.pars_list(url)
+
+
+if __name__ == '__main__':  # Удалить!
+    obj = TwoGisParser()
+    print(obj.run('https://public-api.reviews.2gis.com/2.0/branches/563478234508453/reviews'))

@@ -1,16 +1,23 @@
 from abc import ABC
+from webbrowser import Chrome
+
 from requests import Response, Session
 
 from parser.base.data_typing import Review
 
 
 class ParseSessionInterface(ABC):
-    BASE_URL: str
 
     def _serialize(self, data: dict | list) -> Review | list[Review]:
         raise NotImplementedError
 
-    def run(self) -> list[Review]:
+    def pars(self, url: str) -> list[Review]:
+        raise NotImplementedError
+
+    def pars_list(self, urls: list[str]) -> list[Review]:
+        raise NotImplementedError
+
+    def run(self, url: str | list[str]) -> list[Review]:
         raise NotImplementedError
 
 
@@ -46,5 +53,9 @@ class AbstractRequestsParser(ABC):
         return session
 
 
-class SeleniumParserInterface(ABC):
-    pass
+class AbstractParserInterface(ABC):
+    def __init__(self):
+        self.web_driver = self._init_web_driver()
+
+    def _init_web_driver(self) -> Chrome:
+        return Chrome()
