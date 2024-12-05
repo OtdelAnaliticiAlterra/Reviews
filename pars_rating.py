@@ -1,13 +1,29 @@
-import pandas
+import os
 
-from parser.constants import SHOP_DATA_FILE_PATH
+import pandas
+from dotenv import find_dotenv, load_dotenv
+from telegram_bot_logger import TgLogger
+
+from parser.constants import SHOP_DATA_FILE_PATH, CHATS_IDS
 from parser.enums import SourceEnum
 from parser.rating_parser import RatingsSeleniumParser
 from parser.utils import time_score_decorator, convert_rating_to_df, save_rating
 
+load_dotenv(find_dotenv())
+
+logger = TgLogger(
+    name='Парсинг Рейтингов',
+    token=os.environ.get('LOGGER_BOT_TOKEN'),
+    chats_ids_filename=CHATS_IDS,
+    file=__file__,
+)
+
 
 @time_score_decorator
 def pars_ratings() -> None:
+    """
+    Точка запуска парсинга рейтингов торговых точек
+    """
     data = pandas.read_excel(SHOP_DATA_FILE_PATH)
 
     ratings = list()
@@ -26,4 +42,8 @@ def pars_ratings() -> None:
 
 
 if __name__ == '__main__':
-    pars_ratings()
+    try:
+        pars_ratings()
+    except Exception as e:
+        logger.error(e)
+        raise e
