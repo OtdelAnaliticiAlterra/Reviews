@@ -1,14 +1,11 @@
-from pprint import pprint
-
-from pandas import DataFrame
-
-from parser.constants import RATING_DATA_FRAME_COLUMNS_MAPPING
+from parser.constants import SHOP_DATA_FILE_PATH
+from parser.enums import SourceEnum
 from parser.two_gis import TwoGisParser
+from parser.utils import time_score_decorator, convert_rating_to_df, save_rating
 from yandex import YandexParser
-from concurrent.futures import ProcessPoolExecutor
 import pandas
 from datetime import datetime
-from parser.base.serializers import listed_reviews_serializer, data_frame_serializer, listed_rating_serializer
+from parser.base.serializers import listed_reviews_serializer, data_frame_serializer
 
 from rating_parser import RatingsSeleniumParser
 
@@ -38,36 +35,23 @@ def pars_reviews():
     print(datetime.now() - start)
 
 
-def pars_ratings():
-    start = datetime.now()
-    data = pandas.read_excel('../Магазины.xlsx')
-
-    two_gis_parser = RatingsSeleniumParser()
+@time_score_decorator
+def pars_ratings() -> None:
+    data = pandas.read_excel(SHOP_DATA_FILE_PATH)
 
     ratings = list()
 
-    for idx, row in data.iterrows():
-        url = row['Ссылка 2ГИС']
-        store = row['Магазин']
-        ratings.append(two_gis_parser.run(url, store=store, source='2ГИС'))
+    with RatingsSeleniumParser() as parser:
+        for idx, row in data.iterrows():
+            two_gis_url = row['Ссылка 2ГИС']
+            yandex_url = row['Ссылка Яндекс']
+            store = row['Магазин']
+            ratings.append(parser.run(url=two_gis_url, store=store, source=SourceEnum.TWO_GIS))
+            ratings.append(parser.run(url=yandex_url, store=store, source=SourceEnum.YANDEX))
 
-    for idx, row in data.iterrows():
-        url = row['Ссылка Яндекс']
-        store = row['Магазин']
-        ratings.append(two_gis_parser.run(url, store=store, source='Яндекс'))
-
-    two_gis_parser.web_driver.close()
-
-    ratings = listed_rating_serializer(ratings)
-
-    ratings_df = DataFrame(ratings)
-    ratings_df.sort_values('store', inplace=True)
-    ratings_df = ratings_df.reindex(columns=RATING_DATA_FRAME_COLUMNS_MAPPING)
-    ratings_df.rename(columns=RATING_DATA_FRAME_COLUMNS_MAPPING, inplace=True)
-
-    ratings_df.to_excel('Парсинг Рейтингов_.xlsx', index=False)
-
-    print(datetime.now() - start)
+        print(ratings)
+        ratings_df = convert_rating_to_df(ratings)
+        save_rating(ratings_df)
 
 
 if __name__ == '__main__':

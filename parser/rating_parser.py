@@ -14,7 +14,7 @@ from parser.enums import SourceEnum
 import re
 
 
-class BseRatingSerializer:
+class BaseRatingSerializer:
     def regex_cleaning(self, element: WebElement, pattern: str) -> str | None:
         if isinstance(element, WebElement):
             value = element.text
@@ -48,11 +48,11 @@ class BseRatingSerializer:
         )
 
 
-class YandexSerializer(BseRatingSerializer):
+class YandexSerializer(BaseRatingSerializer):
     pass
 
 
-class TwoGisSerializer(BseRatingSerializer):
+class TwoGisSerializer(BaseRatingSerializer):
     pass
 
 
@@ -70,7 +70,13 @@ class RatingsSeleniumParser(AbstractSeleniumParser):
         self.current_store: str | None = None
         self.current_source: str | None = None
         self.now_date = datetime.now().strftime('%d.%m.%Y')
-        self.__serializer: BseRatingSerializer = TwoGisSerializer()
+        self.__serializer: BaseRatingSerializer = BaseRatingSerializer()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.web_driver.close()
 
     def _serialize(self, data: dict) -> Rating:
         data.update(store=self.current_store)
@@ -155,8 +161,8 @@ if __name__ == '__main__':
     obj = RatingsSeleniumParser()
 
     res_y = obj.run(
-        url='https://yandex.ru/maps/org/alterra/181520948126/reviews/?ll=85.236924%2C52.528511&z=17',
-        store='ЦБ',
+        url='https://yandex.ru/maps/197/barnaul/?ll=83.659632%2C53.353175&mode=poi&poi%5Bpoint%5D=83.659105%2C53.353488&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D130794418046&tab=reviews&z=18',
+        store='CC',
         source=SourceEnum.YANDEX,
     )
 

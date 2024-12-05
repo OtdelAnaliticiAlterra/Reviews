@@ -14,13 +14,16 @@ TWO_GIS_REVIEWS_COUNT_XPATH = [
 YANDEX_TOTAL_RATING_XPATH_LIST = [
     '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
     '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
 ]
 YANDEX_REVIEWS_REGARD_XPATH = [
     '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
     '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
 ]
 YANDEX_REVIEWS_COUNT_XPATH = [
     '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
+    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
 ]
 
 RATING_DATA_FRAME_COLUMNS_MAPPING = {
@@ -31,3 +34,10 @@ RATING_DATA_FRAME_COLUMNS_MAPPING = {
     'source': 'Источник',
     'date': 'Дата',
 }
+
+MARKETING_FOLDER_PATH = '\\\\tg-storage01\\Маркетинг\\Общие\\Отдел аналитики\\Рейтинги Альтерра'
+# MARKETING_FOLDER_PATH = 'C:\\Users\\KainovSA\\PycharmProjects\\Reviews'
+
+SHOP_DATA_FILE_PATH = 'C:\\Users\\KainovSA\\PycharmProjects\\Reviews\\Магазины.xlsx'
+
+RATING_FILE_NAME = 'Парсинг Рейтингов.xlsx'
