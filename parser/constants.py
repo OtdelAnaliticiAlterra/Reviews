@@ -1,3 +1,6 @@
+from pathlib import Path
+import os
+
 TWO_GIS_TOTAL_RATING_XPATH_LIST = [
     '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[2]',
     '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[5]/div/div[2]',
@@ -35,10 +38,12 @@ RATING_DATA_FRAME_COLUMNS_MAPPING = {
     'date': 'Дата',
 }
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 MARKETING_FOLDER_PATH = '\\\\tg-storage01\\Маркетинг\\Общие\\Отдел аналитики\\Рейтинги Альтерра'
 # MARKETING_FOLDER_PATH = 'C:\\Users\\KainovSA\\PycharmProjects\\Reviews'
 
-SHOP_DATA_FILE_PATH = 'C:\\Users\\KainovSA\\PycharmProjects\\Reviews\\Магазины.xlsx'
+SHOP_DATA_FILE_PATH = os.path.join(BASE_DIR, 'Магазины.xlsx')
 
 RATING_FILE_NAME = 'Парсинг Рейтингов.xlsx'
 
