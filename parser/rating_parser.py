@@ -160,17 +160,19 @@ class RatingsSeleniumParser(AbstractSeleniumParser):
 if __name__ == '__main__':
     obj = RatingsSeleniumParser()
 
-    res_y = obj.run(
-        url='https://yandex.ru/maps/197/barnaul/?ll=83.659632%2C53.353175&mode=poi&poi%5Bpoint%5D=83.659105%2C53.353488&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D130794418046&tab=reviews&z=18',
-        store='CC',
-        source=SourceEnum.YANDEX,
-    )
-
-    # res_tg = obj.run(
-    #     url='https://2gis.ru/novoaltajsk/branches/563486824415521/firm/563478234508453/83.988881%2C53.384473/tab/reviews',
-    #     store='ЦБ',
-    #     source=SourceEnum.TWO_GIS,
+    # res_y = obj.run(
+    #     url='https://yandex.ru/maps/org/alterra/52328578772/reviews/?ll=83.988446%2C53.383425&z=17',
+    #     # url='https://yandex.ru/maps/197/barnaul/?ll=83.659632%2C53.353175&mode=poi&poi%5Bpoint%5D=83.659105%2C53.353488&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D130794418046&tab=reviews&z=18',
+    #     store='CC',
+    #     source=SourceEnum.YANDEX,
     # )
 
-    print(res_y)
-    # print(res_tg)
+    res_tg = obj.run(
+        # url='https://2gis.ru/novoaltajsk/branches/563486824415521/firm/563478234508453/83.988881%2C53.384473/tab/reviews',
+        url='https://2gis.ru/biysk/branches/70000001021615222/firm/70000001046695262/tab/reviews',
+        store='ЦБ',
+        source=SourceEnum.TWO_GIS,
+    )
+
+    # print(res_y)
+    print(res_tg)

@@ -2,3 +2,4 @@
 *.PNG
 .venv
 .idea
+.env

@@ -63,4 +63,5 @@ def save_rating(ratings_data: DataFrame) -> None:
     result_data.sort_values('Дата', ascending=False, inplace=True)
     result_data['Дата'] = result_data['Дата'].apply(datetime.strftime, args=('%d.%m.%Y',))
 
+    # result_data.to_excel(str(RATING_FILE_NAME), index=False)
     result_data.to_excel(str(file_path), index=False)
