@@ -218,7 +218,7 @@ class YandexParser(AbstractSeleniumParser, ParseSessionInterface):
 
 if __name__ == '__main__':
     obj = YandexParser()
-    result = obj.run('https://yandex.ru/maps/org/alterra/4300877340/reviews', store='ABC')
+    result = obj.run('https://yandex.ru/maps/org/alterra/1133310706/reviews', store='ЦБ')
     # result = obj.run('https://yandex.ru/maps/org/alterra/130943789947/reviews', store='ABC')
     print(result)
     print(len(result))
