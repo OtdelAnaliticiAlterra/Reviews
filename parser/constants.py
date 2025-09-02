@@ -3,59 +3,70 @@ import os
 
 # Рейтинг
 TWO_GIS_TOTAL_RATING_XPATH_LIST = [
-    '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[2]',
-    '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[5]/div/div[2]',
-    '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[2]',
+    # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[2]',
+    # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[5]/div/div[2]',
+    # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[2]',
+    "//div[contains(@class, '_146hbp5')]//div[contains(@class, '_y10azs')]",
 ]
+
+# Кол-во оценок
 TWO_GIS_REVIEWS_REGARD_XPATH = [
-    '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[3]',
-    '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[5]/div/div[3]',
-    '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[2]/div[2]/div[1]/div[2]',
-    '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[3]',
+    # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[3]',
+    # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[5]/div/div[3]',
+    # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[2]/div[2]/div[1]/div[2]',
+    # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[3]',
+    "//div[contains(@class, '_146hbp5')]//div[contains(@class, '_jspzdm')]",
 ]
+
+# Кол-во оценок
 TWO_GIS_REVIEWS_COUNT_XPATH = [
-    '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
-    '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
-    '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
-    '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[3]/h2/a/span',
-    '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[3]/h2/a/span',
+    # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
+    # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
+    # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
+    # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[3]/h2/a/span',
+    # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[3]/h2/a/span',
+    "//div[contains(@class, '_9idr87')]//h2[a[contains(text(), 'Отзывы')]]//span",
+
 ]
 
 # Рейтинг
 YANDEX_TOTAL_RATING_XPATH_LIST = [
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[7]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[2]',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[7]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[1]/div[4]/div/div[2]',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]',
+    "//div[contains(@class, 'business-summary-rating__main-rating')]//div[contains(@class, 'business-summary-rating-badge-view__rating')]",
 ]
 
 # Кол-во оценок
 YANDEX_REVIEWS_REGARD_XPATH = [
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[7]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[7]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[5]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[6]/div/div[2]/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[2]/div[2]/span',
+    "//div[contains(@class, 'business-summary-rating__main-rating')]//div[contains(@class, 'business-summary-rating-badge-view__rating-count')]",
 ]
 
 # Кол-во отзывов
 YANDEX_REVIEWS_COUNT_XPATH = [
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[4]/div/div',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[5]/div/div',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[2]/div[2]/div/div/div/div[1]/div[4]/div/div',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
-    '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
-    '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[4]/div/div',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[5]/div/div',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[2]/div[2]/div/div/div/div[1]/div[4]/div/div',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
+    # '/html/body/div[1]/div[2]/div[8]/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div/div/div[3]/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
+    # '/html/body/div[1]/div[2]/div[8]/aside/div[1]/div[1]/div/div[1]/div/div[3]/div/div[3]/div/div/div[2]/div[2]/div/div/div/div[1]/div[3]/div/div',
+    "//div[contains(@class, 'carousel')]//div[contains(@aria-label, 'Отзывы')]/div[@class='tabs-select-view__counter']",
 ]
 
 RATING_DATA_FRAME_COLUMNS_MAPPING = {
@@ -70,7 +81,7 @@ RATING_DATA_FRAME_COLUMNS_MAPPING = {
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MARKETING_FOLDER_PATH = '\\\\tg-storage01\\Маркетинг\\Общие\\Отдел аналитики\\Рейтинги Альтерра'
-# MARKETING_FOLDER_PATH = 'C:\\Users\\Analiticscript\\Projects\\Reviews'
+# MARKETING_FOLDER_PATH = '.\\'
 
 SHOP_DATA_FILE_PATH = os.path.join(BASE_DIR, 'Магазины.xlsx')
 

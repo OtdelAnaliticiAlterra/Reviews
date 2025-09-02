@@ -167,7 +167,7 @@ if __name__ == '__main__':
     #     source=SourceEnum.YANDEX,
     # )
     res_tg = obj.run(
-        url='https://2gis.ru/barnaul/branches/563486824415521/firm/70000001066938486/83.600399%2C53.392855/tab/reviews',
+        url='https://2gis.ru/barnaul/branches/563486824415521/firm/563478234508453/83.988881%2C53.384473/tab/reviews',
         store='ЦБ',
         source=SourceEnum.TWO_GIS,
     )
