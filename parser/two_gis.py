@@ -200,7 +200,57 @@ class TwoGisParser(AbstractRequestsParser, ParseSessionInterface):
             'reviews_regard': rating_data.get('branch_reviews_count'),
         }
 
+    def get_rating_only(self, branch_url: str):
+        """Получает рейтинг и количество отзывов через API 2ГИС."""
+        from datetime import datetime
+        import re
+        from parser.constants import TWO_GIS_API_KEY
+        from parser.enums import SourceEnum
+        from parser.base.data_typing import Rating
 
+        match = re.search(r'/firm/(\d+)', branch_url)
+        if not match:
+            return Rating(
+                source=SourceEnum.TWO_GIS,
+                store=self.current_store,
+                total_rating='',
+                reviews_count='',
+                reviews_regard='',
+                date=datetime.now().strftime('%d.%m.%Y')
+            )
+        branch_id = match.group(1)
+        api_url = f"https://public-api.reviews.2gis.com/2.0/branches/{branch_id}/reviews"
+        params = {
+            'limit': 1,
+            'locale': 'ru_RU',
+            'fields': 'meta.branch_rating,meta.branch_reviews_count',
+            'key': TWO_GIS_API_KEY
+        }
+        try:
+            response = self._session.get(api_url, params=params, timeout=15)
+            if response.status_code == 200:
+                data = response.json()
+                meta = data.get('meta', {})
+                total_rating = str(meta.get('branch_rating', ''))
+                reviews_count = str(meta.get('branch_reviews_count', ''))
+                return Rating(
+                    source=SourceEnum.TWO_GIS,
+                    store=self.current_store,
+                    total_rating=total_rating,
+                    reviews_count=reviews_count,
+                    reviews_regard=reviews_count,
+                    date=datetime.now().strftime('%d.%m.%Y')
+                )
+        except Exception as e:
+            print(f"API error for {branch_id}: {e}")
+        return Rating(
+            source=SourceEnum.TWO_GIS,
+            store=self.current_store,
+            total_rating='',
+            reviews_count='',
+            reviews_regard='',
+            date=datetime.now().strftime('%d.%m.%Y')
+        )
 
 if __name__ == '__main__':  # Удалить!
     obj = TwoGisParser()

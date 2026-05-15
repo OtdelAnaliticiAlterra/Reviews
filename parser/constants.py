@@ -25,9 +25,12 @@ TWO_GIS_REVIEWS_COUNT_XPATH = [
     # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
     # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[3]/h2/a/span',
     # '/html/body/div[2]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div/div/div[1]/div[3]/h2/a/span',
-    "//div[contains(@class, '_9idr87')]//h2[a[contains(text(), 'Отзывы')]]//span",
+    "//div[contains(@class, '_46hyo9')]",
+
 
 ]
+
+TWO_GIS_API_KEY = '6e7e1929-4ea9-4a5d-8c05-d601860389bd'
 
 # Рейтинг
 YANDEX_TOTAL_RATING_XPATH_LIST = [

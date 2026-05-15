@@ -45,5 +45,5 @@ if __name__ == '__main__':
     try:
         pars_ratings()
     except Exception as e:
-        logger.error(e)
+        #logger.error(e)
         raise e

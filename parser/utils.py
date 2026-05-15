@@ -55,6 +55,11 @@ def save_rating(ratings_data: DataFrame) -> None:
     В данном случае сохранение производится в директорию для Bi отчета
     """
     file_path = os.path.join(MARKETING_FOLDER_PATH, RATING_FILE_NAME)
+    if os.path.exists(file_path):
+        file_data = pandas.read_excel(file_path)
+        result_data = pandas.concat([file_data, ratings_data], ignore_index=True)
+    else:
+        result_data = ratings_data
     file_data = pandas.read_excel(file_path)
 
     result_data = pandas.concat([file_data, ratings_data], ignore_index=True)

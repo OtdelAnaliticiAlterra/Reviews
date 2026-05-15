@@ -151,9 +151,19 @@ class RatingsSeleniumParser(AbstractSeleniumParser):
     def run(self, url: str, store: str, source: str) -> Rating:
         self.current_store = store
         self.current_source = source
-
         self.logic_source_switcher(source)
 
+        # Для 2ГИС сначала пробуем API
+        if source == SourceEnum.TWO_GIS:
+            from parser.two_gis import TwoGisParser
+            tg_parser = TwoGisParser()
+            tg_parser.current_store = store
+            rating = tg_parser.get_rating_only(url)
+            if rating['reviews_count']:  # API вернул данные
+                return rating
+            # Если API не сработал – идём в Selenium (fallback)
+
+        # Для Яндекса или fallback для 2ГИС – используем старый Selenium-парсер
         return self.pars(url)
 
 
