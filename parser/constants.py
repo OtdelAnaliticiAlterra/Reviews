@@ -18,7 +18,7 @@ TWO_GIS_REVIEWS_REGARD_XPATH = [
     "//div[contains(@class, '_146hbp5')]//div[contains(@class, '_jspzdm')]",
 ]
 
-# Кол-во оценок
+# Кол-во отзывов
 TWO_GIS_REVIEWS_COUNT_XPATH = [
     # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
     # '//*[@id="root"]/div/div/div[1]/div[1]/div[3]/div/div/div[2]/div/div/div[2]/div[2]/div/div[1]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div[1]/div[3]/h2/a/span',
@@ -82,7 +82,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 MARKETING_FOLDER_PATH = '\\\\tg-storage01\\Маркетинг\\Общие\\Отдел аналитики\\Рейтинги Альтерра'
 # MARKETING_FOLDER_PATH = '.\\'
-
+#MARKETING_FOLDER_PATH = '\\\\TG-Storage01\\Аналитический отдел\\Общие\\Отдел Маркетинга'
 SHOP_DATA_FILE_PATH = os.path.join(BASE_DIR, 'Магазины.xlsx')
 
 RATING_FILE_NAME = 'Парсинг Рейтингов.xlsx'

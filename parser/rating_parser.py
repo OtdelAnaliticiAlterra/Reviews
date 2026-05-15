@@ -166,10 +166,16 @@ if __name__ == '__main__':
     #     store='CC',
     #     source=SourceEnum.YANDEX,
     # )
+    # res_tg = obj.run(
+    #     url='https://2gis.ru/barnaul/branches/563486824415521/firm/563478234508453/83.988881%2C53.384473/tab/reviews',
+    #     store='ЦБ',
+    #     source=SourceEnum.TWO_GIS,
+    # )
+
     res_tg = obj.run(
-        url='https://2gis.ru/barnaul/branches/563486824415521/firm/563478234508453/83.988881%2C53.384473/tab/reviews',
+        url='https://yandex.ru/maps/org/alterra/1133310706/reviews',
         store='ЦБ',
-        source=SourceEnum.TWO_GIS,
+        source=SourceEnum.YANDEX,
     )
 
     # print(res_y)
