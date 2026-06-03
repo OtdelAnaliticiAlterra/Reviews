@@ -227,7 +227,7 @@ class TwoGisParser(AbstractRequestsParser, ParseSessionInterface):
             'key': TWO_GIS_API_KEY
         }
         try:
-            response = self._session.get(api_url, params=params, timeout=15)
+            response = self._session.get(api_url, params=params, timeout=30)
             if response.status_code == 200:
                 data = response.json()
                 meta = data.get('meta', {})

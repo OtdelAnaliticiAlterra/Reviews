@@ -1,3 +1,4 @@
+import traceback
 from datetime import datetime
 from time import sleep
 
@@ -12,6 +13,9 @@ from parser.constants import YANDEX_TOTAL_RATING_XPATH_LIST, YANDEX_REVIEWS_COUN
 from parser.enums import SourceEnum
 
 import re
+
+from parser.exc import ErrorDataSerializing
+from parser.logging_ import logger
 
 
 class BaseRatingSerializer:
@@ -38,14 +42,18 @@ class BaseRatingSerializer:
         return self.regex_cleaning(element, r'([\d]*)')
 
     def serialize(self, data: dict) -> Rating:
-        return Rating(
-            source=data.get('source'),
-            store=data.get('store'),
-            total_rating=self.clean_total_rating(data.get('total_rating')),
-            reviews_count=self.clean_reviews_count(data.get('reviews_count')),
-            reviews_regard=self.clean_reviews_regard(data.get('reviews_regard')),
-            date=data.get('date'),
-        )
+        try:
+            return Rating(
+                source=data.get('source'),
+                store=data.get('store'),
+                total_rating=self.clean_total_rating(data.get('total_rating')),
+                reviews_count=self.clean_reviews_count(data.get('reviews_count')),
+                reviews_regard=self.clean_reviews_regard(data.get('reviews_regard')),
+                date=data.get('date'),
+            )
+        except Exception as e:
+            logger.debug(traceback.format_exception(e))
+            raise ErrorDataSerializing()
 
 
 class YandexSerializer(BaseRatingSerializer):
@@ -110,6 +118,8 @@ class RatingsSeleniumParser(AbstractSeleniumParser):
             except NoSuchElementException:
                 value = False
 
+        logger.debug(f'get attr by XPATH: {xpath}\nvalue:{value}')
+
         return value
 
     def pars(self, url) -> Rating:
@@ -149,6 +159,14 @@ class RatingsSeleniumParser(AbstractSeleniumParser):
             self.__serializer = TwoGisSerializer()
 
     def run(self, url: str, store: str, source: str) -> Rating:
+        logger.info(
+            (
+                f'start parsing:\n'
+                f'store: {store}\t\tsource:{source}'
+                f'url: {url}'
+            )
+        )
+
         self.current_store = store
         self.current_source = source
         self.logic_source_switcher(source)
