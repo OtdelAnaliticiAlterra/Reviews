@@ -55,14 +55,17 @@ def save_rating(ratings_data: DataFrame) -> None:
     В данном случае сохранение производится в директорию для Bi отчета
     """
     file_path = os.path.join(MARKETING_FOLDER_PATH, RATING_FILE_NAME)
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    current_date = ratings_data['Дата'].iloc[0]
     if os.path.exists(file_path):
-        file_data = pandas.read_excel(file_path)
-        result_data = pandas.concat([file_data, ratings_data], ignore_index=True)
+        old_data = pandas.read_excel(file_path)
+        old_data = old_data[old_data['Дата'] != current_date]
+        result_data = pandas.concat([old_data, ratings_data], ignore_index=True)
     else:
         result_data = ratings_data
     file_data = pandas.read_excel(file_path)
 
-    result_data = pandas.concat([file_data, ratings_data], ignore_index=True)
+    #result_data = pandas.concat([file_data, ratings_data], ignore_index=True)
     result_data['Дата'] = result_data['Дата'].convert_dtypes(convert_string=True)
     result_data['Дата'] = result_data.apply(normalize_dtype_date_column, axis=1)
     result_data.sort_values('Дата', ascending=False, inplace=True)
